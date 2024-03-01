@@ -7,53 +7,55 @@ public class HomePage {
     public static void main(String[] args) throws InterruptedException {
             System.setProperty("webdriver.chrome.driver" ,"C:\\Users\\vinay.pohankar\\Desktop\\New folder\\Projects\\seleniumproject\\newdriver\\chromedriver.exe" );
             WebDriver driver = new ChromeDriver();
-            driver.get("https://peoplefirst.ril.com/webapp/#/login");
+            driver.get("https://katalon-demo-cura.herokuapp.com/#appointment");
 
         driver.manage().window().maximize();
-        Thread.sleep(5000);
-
-        WebElement username = driver.findElement(By.xpath("//input[@id='mat-input-0']"));
-            username.sendKeys("Vinay.Pohankar");
-             Thread.sleep(1000);
-
-             WebElement password = driver.findElement(By.xpath("//input[@id='mat-input-1']"));
-            password.sendKeys("biogass@12345");
-            Thread.sleep(1000);
-
-            WebElement submit = driver.findElement(By.xpath("//span[contains(text(),'Login')]"));
-            submit.click();
-            Thread.sleep(3000);
-
-        ((ChromeDriver) driver).executeScript("window.open();");
-
-        String originalHandle = driver.getWindowHandle();
-        for (String handle : driver.getWindowHandles()) {
-            if (!handle.equals(originalHandle)) {
-                driver.switchTo().window(handle);
-                break;
-            }
-        }
-
-        driver.get("https://outlook.office.com/mail/");
-
-
-
-
-
-        WebElement email = driver.findElement(By.xpath("/html[1]/body[1]/app-root[1]/login-page[1]/div[1]/div[1]/div[1]/div[1]/div[1]/mat-card[1]/div[1]/div[1]/mat-radio-group[1]/mat-radio-button[2]/label[1]/div[2]"));
-        email.click();
         Thread.sleep(1000);
 
+            WebElement headlineElement = driver.findElement(By.tagName("h1"));
+            String headlineText = headlineElement.getText();
 
-        WebElement otp = driver.findElement(By.xpath("//span[contains(text(),'Continue')]"));
-            otp.click();
-            Thread.sleep(1000);
+            WebElement titleElement = driver.findElement(By.tagName("h3"));
+            String titleText = titleElement.getText();
 
+        String expectedHeadlineText = "CURA Healthcare Service";
+        String expectedtitleText = "We Care About Your Health";
 
+            if (headlineText.equals(expectedHeadlineText)&&titleText.equals(expectedtitleText))
+            {
+                System.out.println("Scenario 1- Verification of Headline and Tiltle text is passed");
+            }
+            else
+            {
+                System.out.println("Scenario 1- Verification of Headline and Tiltle text is failed");
+            }
 
+            WebElement makeappointment = driver.findElement(By.id("btn-make-appointment"));
 
+            if (makeappointment != null) {
+                // If the button is found, it means it exists on the page
+                System.out.println("Scenario 2 Test 1 - Verify that Make Appointment button is visible is passed");
+            } else {
+                // If the button is not found, it means it does not exist on the page
+                System.out.println("Scenario 2 Test 1- Verify that Make Appointment button is visible is failed");
+            }
 
+            WebElement makeapp_but_element = driver.findElement(By.id("btn-make-appointment"));
+            String makeapp_but_text = makeapp_but_element.getText();
 
+            String expected_makeapp_but_text = "Make Appointment";
+
+            if (expected_makeapp_but_text.equals(makeapp_but_text))
+            {
+                System.out.println("Scenario 2 Test 2 - Verify text Make Appointment is present on button is present is passed");
+            }
+            else
+            {
+                System.out.println("Scenario 2 Test 2 - Verify text Make Appointment is present on button is present is failed");
+
+            }
+
+        driver.close();
 
 
         }
