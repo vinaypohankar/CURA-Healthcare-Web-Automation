@@ -55,6 +55,39 @@ public class HomePage {
 
             }
 
+        WebElement bottom_heading = driver.findElement(By.tagName("h4"));
+        String bottom_heading_text = bottom_heading.getText();
+
+        String expected_bottom_heading_text = "CURA Healthcare Service";
+
+        if (expected_bottom_heading_text.equals(bottom_heading_text))
+        {
+            System.out.println("Scenario 3 Test 1 - Checking wheather CURA Healthcare Service heading is present in the bottom of the home page is passed");
+        }
+        else
+        {
+            System.out.println("Scenario 3 Test 1 - Checking wheather CURA Healthcare Service heading is present in the bottom of the home page is failed");
+
+        }
+
+        WebElement address = driver.findElement(By.tagName("p"));
+        String address_text = address.getText();
+
+        String expected_address_text = "Atlanta 550 Pharr Road NE Suite 525\n" +
+                "Atlanta, GA 30305";
+
+        if (expected_address_text.equals(address_text))
+        {
+            System.out.println("Scenario 3 Test 2 - Checking wheather address is present in the bottom of the home page is passed");
+        }
+        else
+        {
+            System.out.println("Scenario 3 Test 2 - Checking wheather address is present in the bottom of the home page is failed");
+
+        }
+
+
+
         driver.close();
 
 
